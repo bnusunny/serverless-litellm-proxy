@@ -22,7 +22,7 @@ You need to enter an random string for `ApiMasterKey` parameter. And take note o
 
 ## Test
 
-Run this command to test it. Replace <litellmProxyFunctionUrl> and <ApiMasterKey> with the correct values. And you should see the response stream back.
+Run this command to test it. Replace `litellmProxyFunctionUrl` and `ApiMasterKey` with the correct values. And you should see the response stream back.
 
 ```shell
 
