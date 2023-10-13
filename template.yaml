@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Serverless LiteLLM-Proxy
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 300
+
+Parameters:
+  ApiMasterKey:
+    Type: String
+    Default: sk-bedrock-1df1234sldkqfw4123rqwefqe
+    Description: "LiteLLM-Proxy Master Key"
+
+Resources:
+  litellmProxyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      MemorySize: 256
+      Environment:
+        Variables:
+          LITELLM_PROXY_MASTER_KEY: !Ref ApiMasterKey
+          AWS_LWA_INVOKE_MODE: RESPONSE_STREAM
+      FunctionUrlConfig:
+        AuthType: NONE
+        InvokeMode: RESPONSE_STREAM
+      Policies:
+      - Statement:
+        - Sid: BedrockInvokePolicy
+          Effect: Allow
+          Action:
+          - bedrock:InvokeModelWithResponseStream
+          Resource: '*'
+      Tracing: Active
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: ./src
+      DockerTag: v1
+
+Outputs:
+  litellmProxyFunctionUrl:
+    Description: "Function URL for litellmProxy Function"
+    Value: !GetAtt litellmProxyFunctionUrl.FunctionUrl
+  litellmProxyFunction:
+    Description: "litellmProxy Lambda Function ARN"
+    Value: !GetAtt litellmProxyFunction.Arn

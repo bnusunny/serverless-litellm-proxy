@@ -1,6 +1,9 @@
 # Use an official Python runtime as a parent image
 FROM python:3.8
 
+# Install Lambda Web Adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.7.1 /lambda-adapter /opt/extensions/lambda-adapter
+
 # Set the working directory in the container
 WORKDIR /app
 
