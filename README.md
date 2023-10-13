@@ -1,6 +1,6 @@
 # Serverless LiteLLM-Proxy
 
-This demo shows how to deploy [LiteLLM-Proxy](https://github.com/BerriAI/liteLLM-proxy) on AWS Lambda to provide an OpenAI compatable API for Amazon Bedrock.
+This demo shows how to deploy [LiteLLM-Proxy](https://github.com/BerriAI/liteLLM-proxy) on AWS Lambda using [Lambda Web Adapter](https://github.com/awslabs/aws-lambda-web-adapter) to provide an OpenAI compatable API for Amazon Bedrock.
 
 ## Pre-requisites
 
