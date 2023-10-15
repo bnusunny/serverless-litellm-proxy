@@ -29,10 +29,15 @@ Resources:
         InvokeMode: RESPONSE_STREAM
       Policies:
       - Statement:
-        - Sid: BedrockInvokePolicy
+        - Sid: AllowBedrockInvokePolicy
           Effect: Allow
           Action:
           - bedrock:InvokeModelWithResponseStream
+          Resource: '*'
+        - Sid: AllowSageMakerInvokePolicy
+          Effect: Allow
+          Action:
+          - sagemaker:InvokeEndpoint
           Resource: '*'
       Tracing: Active
     Metadata:
